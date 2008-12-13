@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AIRAPIs xmlns="http://www.adobe.com/air/documentation/1.0" build="1.5" checksum="4daa56358f2456456426cf1b82481b6f">
+	<packages>
+		<asPackage name="window.air.ui">
+			<asClasses>
+				<class name="Menu">
+					<methods>
+						<method name="createFromXML" isStatic="true" resultType="window.runtime.flash.display.NativeMenu">
+ 							<shortDescription>Load a menu defined in XML format</shortDescription>
+ 							<description>
+								Load a menu defined in XML format.
+                @param source - An object containing XML menu(s) to be loaded for various OS-es.
+                @return - A NativeMenu object built from the given XML source.
+ 							</description>
+          					<params>
+          						<param name="source" type="String" default="" />
+          					</params>
+       					</method>
+						<method name="createFromJSON" isStatic="true" resultType="window.runtime.flash.display.NativeMenu">
+							<shortDescription>Load a menu defined in JSON format</shortDescription>
+ 							<description>
+								Load a menu defined in JSON format.
+                @param source - An object containing JSON menu(s) to be loaded for various OS-es.
+								@return - A NativeMenu object built from the given XML source.
+ 							</description>
+          					<params>
+          						<param name="source" type="String" default="" />
+          					</params>
+       					</method>
+						<method name="setAsMenu" isStatic="true" resultType="void">
+ 							<shortDescription>Create a menu for the application</shortDescription>
+	 						<description>
+									On Windows: sets the given nativeMenu object as the NativeWindow's menu;
+									On Mac: inserts the items of the given nativeMenu object between the 'Edit' and 'Window' default menus;
+									@param nativeMenu - A NativeMenu returned by one of the air.ui.Menu.from... functions.
+									@param overwrite -  A boolean that will change the behavior on Mac. If true, the default menus will be replaced entirely by the given nativeMenu
+	 						</description>
+	          				<params>
+	          					<param name="nativeMenu" type="window.runtime.flash.display.NativeMenu" default="" />
+	          					<param name="overwrite" type="Boolean" default="" />
+	          				</params>
+          				</method>
+						<method name="setAsContextMenu" isStatic="true" resultType="void">
+	 						<shortDescription>Displays the given menu as a contextual menu when the user right</shortDescription>
+	 						<description>
+									Displays the given menu as a contextual menu when the user right clicks a certain DOM element.
+									@param nativeMenu - A NativeMenu returned by one of the air.ui.Menu.from... functions.
+									@param domElement -  The DOM Element to link with the given nativeMenu. The contextual menu will only show when the user right clicks over domElement. This attribute is optional. If missing, the context menu will display on every right-click over the application.
+	 						</description>
+	          				<params>
+	          					<param name="nativeMenu" type="window.runtime.flash.display.NativeMenu" default="" />
+	          					<param name="domElement" type="DOMElement" default="" />
+	          				</params>
+          				</method>
+						<method name="setAsIconMenu" isStatic="true" resultType="void">
+	 						<shortDescription>Sets a menu for the application icon (notification / dock)
+	 						</shortDescription>
+	 						<description>
+								Sets the given nativeMenu as the ''NativeApplication.nativeApplication.icon.menu'' property.
+								@param nativeMenu -  A NativeMenu returned by one of the air.ui.Menu.from... functions.
+								@param icons - An array holding icon file paths or bitmap data objects. If specified, these will be used as the application's tray/dock icons.
+								@throws - If no bitmap data was set for the ''icon'' object and no default icons are specified in the application descriptor.
+	 						</description>
+	          				<params>
+	          					<param name="nativeMenu" type="window.runtime.flash.display.NativeMenu" default="" />
+	          					<param name="icons" type="Array" default="" />
+	          				</params>
+          				</method>           					          					
+					</methods>
+				</class>
+			</asClasses>
+		</asPackage>
+	</packages>
+</AIRAPIs>

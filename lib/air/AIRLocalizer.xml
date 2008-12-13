@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AIRAPIs xmlns="http://www.adobe.com/air/documentation/1.0" build="1.5" checksum="978cc0a6d812f3a78b0660f3f614ca5a">
+	<packages>
+		<asPackage name="window.air">
+			<asClasses>
+				<class name="Localizer">
+					<fields>
+						<field name="localizer" isStatic="true" isConst="false"
+							type="air.Localizer">
+							Returns the singleton instance of air.Localizer class
+						</field>
+						<field name="ultimateFallbackLocale" isStatic="true" isConst="false"
+							type="String">
+							Represents the locale used when no user preference is supported by the application.
+							Default is "en";
+						</field>
+						<field name="LOCALE_CHANGE" isStatic="true" isConst="true"
+							type="String">
+							Fired by "setLocaleChain" when the current locale is changed (synchronous)
+			                Event object structure is : { localeChain /* : String [] */ }
+						</field>
+						<field name="RESOURCE_NOT_FOUND" isStatic="true" isConst="true"
+							type="String">
+							Fired by "getString" and "update" functions when a resource is not found in the specified bundle (fired asynchronous)
+			                Event object structure is : { resourceName /* : String */, bundleName /* : String */ }
+						</field>
+						<field name="FILE_NOT_FOUND" isStatic="true" isConst="true"
+							type="String">
+							Fired by "getFile" when a resource file is not found (fired asynchronous)
+                			Event object structure is : { resourceFileName /* : String */ }
+						</field>
+						<field name="BUNDLE_NOT_FOUND" isStatic="true" isConst="true"
+							type="String">
+							Fired by "getString" and "update" functions when a bundle file is not found (fired asynchronous)
+                			Event object structure is : { bundleName /* : String */ }
+						</field>
+						<field name="BundlePathNotFoundError" isStatic="true" isConst="true"
+							type="Error">
+							Exception
+						</field>
+						<field name="IllegalArgumentsError" isStatic="true" isConst="true"
+							type="Error">
+							Exception
+						</field>
+					</fields>
+					<methods>
+ 						<method name="setBundlesDirectory" isStatic="false" resultType="void">
+ 							<shortDescription>Sets the path to the localization files</shortDescription>
+ 							<description>
+									Sets the path to the localization files. Default Bundle path is "app:/locale/";
+                  NOTE: If setLocaleChain hasn’t been called, the directory listing of the bundle path is used to 
+												automatically figure out what locales are supported by the application and than call 
+												"sortLanguagesByPreference" in order to sort them using the Preferences defined by the user 
+												in the "Capabilities.languages" array; If it fails to list the directory it will throw 
+												"air.Localizer.BundlePathNotFoundError" exception.
+
+									NOTE: In order to have automatically locales detection the path must point to an existing 
+												directory, that can be listed using runtime’s File API;
+ 							</description>
+          					<params>
+          						<param name="path" type="String" default="app:/locale" />
+          					</params>
+          				</method>
+          				<method name="update" isStatic="false" resultType="void">
+          					 <shortDescription>Updates the dom</shortDescription>
+										<description>								 
+											Updates the dom
+											@param domElement DOMElement Optional, default is document
+										</description>
+          					<params>
+          						<param name="domElement" type="DOMElement" default="window.document" />
+          					</params>
+          				</method>
+          				<method name="getString" isStatic="false" resultType="String">
+          					 <shortDescription>Loads the bundle and returns the resource value</shortDescription>
+ 							<description>
+										Loads the bundle and returns the resource value
+                    @param bundleName String
+                    @param resourceName String
+                    @param locale String
+                    @return String
+ 							</description>
+          					<params>
+          						<param name="bundleName" type="String" default="" />
+          						<param name="resourceName" type="String" default="" />
+          						<param name="locale" type="String" default="" />
+          					</params>
+          				</method>    
+          				<method name="getFile" isStatic="false" resultType="String">
+          					 <shortDescription>Loads the file and returns the contents</shortDescription>
+ 							<description>
+										Loads the file and returns the contents
+										@param fileName String
+										@param locale String
+										@return String
+ 							</description>
+          					<params>
+          						<param name="fileName" type="String" default="" />
+          						<param name="locale" type="String" default="" />
+          					</params>
+          				</method> 
+          				<method name="sortLanguagesByPreference" isStatic="false" resultType="void">
+          					 <shortDescription>Sort languages by user preferences</shortDescription>
+ 							<description>
+										Sort languages by user preferences
+										@param appLocales String[]
+                    @param systemPreferences String[]
+                    @param ultimateFallbackLocale String, optional, (default null)
+                    @param keepAllLocales String, optional (default true)
+ 							</description>
+          					<params>
+          						<param name="appLocales" type="Array" default="" />
+          						<param name="systemPreferences" type="Array" default="" />
+          						<param name="ultimateFallbackLocale" type="String" default="null" />
+          						<param name="keepAllLocales" type="Boolean" default="true" />
+          					</params>
+          				</method> 
+          				<method name="setLocaleChain" isStatic="false" resultType="void">
+          					 <shortDescription>Sets the locale chain and disables automatic locale chain detection</shortDescription>
+ 							<description>
+											Sets the locale chain and disables automatic locale chain detection
+                      @param chain String[] 
+ 							</description>
+          					<params>
+          						<param name="chain" type="Array" default="" />
+          					</params>
+          				</method> 
+          				<method name="getLocaleChain" isStatic="false" resultType="Array">
+          					 <shortDescription>Returns the current locale chain</shortDescription>
+ 							<description>
+											Returns the current locale chain
+                      @return String[]
+ 							</description>
+          					<params>
+          					</params>
+          				</method>
+          				<method name="setLocalAttributePrefix" isStatic="false" resultType="void">
+          					 <shortDescription>Sets the prefix for local attributes used in the "update" function.Default prefix is "local_".</shortDescription>
+ 							<description>Sets the prefix for local attributes used in the "update" function.Default prefix is "local_".
+ 							</description>
+          					<params>
+          						<param name="value" type="String" default="local_" />
+          					</params>
+          				</method>
+          				<method name="getResourceBundle" isStatic="false" resultType="Object">
+          					 <shortDescription>Loads a bundle and returns its keys and values as an object.</shortDescription>
+ 							<description>
+											Loads a bundle and returns its keys and values as an object.
+											@param locale String The locale name where it should search the bundle
+                      @param bundleName String The bundle name to be loaded
+                      @return Object Returns null if the bundle is not found.
+ 							</description>
+          					<params>
+          						<param name="locale" type="String" default="" />
+          						<param name="bundleName" type="String" default="" />
+          					</params>
+          				</method>          				          				
+					</methods>
+				</class>
+			</asClasses>
+		</asPackage>
+	</packages>
+</AIRAPIs>

@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AIRAPIs xmlns="http://www.adobe.com/air/documentation/1.0" build="1.5" checksum="1d17f6d0c20e3deca1c7958bb64e035e">
+          <packages>
+         <asPackage name="window.runtime.air.net">
+          <asClasses>
+          <class name="SocketMonitor">
+          <constructors>
+          <constructor name="SocketMonitor"><shortDescription>
+  Creates a SocketMonitor object for a specified TCP endpoint.</shortDescription><description>
+  Creates a SocketMonitor object for a specified TCP endpoint.
+    &lt;p&gt;After creating a SocketMonitor object, the caller should call &lt;code&gt;start&lt;/code&gt;
+  to begin monitoring the status of the service.&lt;/p&gt;
+    &lt;p&gt;As with the Timer object, the caller should maintain a reference to the SocketMonitor
+  object. Otherwise, the runtime deletes the object and monitoring ends.&lt;/p&gt;
+    </description>
+          <params>
+          <param name="host" type="window.runtime.String" default="">The host to monitor.
+  </param>
+          <param name="port" type="window.runtime.int" default="">The port to monitor.
+  
+  </param>
+          </params>
+          </constructor>
+          </constructors>
+          <fields>
+          <field name="pollInterval" type="window.runtime.Number" isConst="false" isStatic="false">
+     The interval, in milliseconds, for polling the server.</field>
+          <field name="running" type="window.runtime.Boolean" isConst="false" isStatic="false">
+     Whether the monitor has been started.</field>
+          <field name="available" type="window.runtime.Boolean" isConst="false" isStatic="false">
+     Whether the service is currently considered "available."
+          &lt;p&gt;The initial value is &lt;code&gt;false&lt;/code&gt; until either a status check sets the
+     property to &lt;code&gt;true&lt;/code&gt; or the property is initialized to &lt;code&gt;true&lt;/code&gt; explicitly.&lt;/p&gt;
+          &lt;p&gt;Typically, this property is set by the &lt;code&gt;checkStatus()&lt;/code&gt; implementation in a subclass or specializer,
+     but if the application has independent information about a service's availability (for example, a request just succeeded
+     or failed), the property can be set explicitly.&lt;/p&gt;
+     
+     </field>
+          <field name="lastStatusUpdate" type="window.runtime.Date" isConst="false" isStatic="false">
+     The time of the last status update.</field>
+          <field name="prototype" type="window.runtime.Object" isConst="false" isStatic="true">
+  A reference to the prototype object of a class or function object.</field>
+          <field name="constructor" type="window.runtime.Object" isConst="false" isStatic="false">
+  A reference to the class object or constructor function for a given object instance.</field>
+          <field name="host" type="window.runtime.String" isConst="false" isStatic="false">
+  The host being monitored.
+  
+  </field>
+          <field name="port" type="window.runtime.int" isConst="false" isStatic="false">
+  The port being monitored.
+  
+  </field>
+          </fields>
+          
+          <methods>
+          <method name="addEventListener" isStatic="false" resultType="void"><shortDescription>
+ Registers an event listener object with an EventDispatcher object so that the listener 
+ receives notification of an event.</shortDescription><description/>
+          <params>
+          <param name="type" type="window.runtime.String" default=""/>
+          <param name="listener" type="window.runtime.Function" default=""/>
+          <param name="useCapture" type="window.runtime.Boolean" default="false"/>
+          <param name="priority" type="window.runtime.int" default="0"/>
+          <param name="useWeakReference" type="window.runtime.Boolean" default="false"/>
+          </params>
+          </method>
+          <method name="checkStatus" isStatic="false" resultType="void"><shortDescription>
+ Calling the &lt;code&gt;checkStatus()&lt;/code&gt; method of a SocketMonitor object causes
+ the application to try connecting to the socket, to check for a 
+ &lt;code&gt;connect&lt;/code&gt; event.</shortDescription><description>
+ Calling the &lt;code&gt;checkStatus()&lt;/code&gt; method of a SocketMonitor object causes
+ the application to try connecting to the socket, to check for a 
+ &lt;code&gt;connect&lt;/code&gt; event.
+ 
+ </description>
+          </method>
+          <method name="dispatchEvent" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+ Dispatches an event into the event flow.</shortDescription><description/>
+          <params>
+          <param name="event" type="window.runtime.flash.events.Event" default=""/>
+          </params>
+          </method>
+          <method name="hasEventListener" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+ Checks whether the EventDispatcher object has any listeners registered for a specific type 
+ of event.</shortDescription><description/>
+          <params>
+          <param name="type" type="window.runtime.String" default=""/>
+          </params>
+          </method>
+          <method name="hasOwnProperty" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+  Indicates whether an object has a specified property defined.</shortDescription><description/>
+          <params>
+          <param name="name" type="window.runtime.String" default=""/>
+          </params>
+          </method>
+          <method name="isPrototypeOf" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+  Indicates whether an instance of the Object class is in the prototype chain of the object specified 
+  as the parameter.</shortDescription><description/>
+          <params>
+          <param name="theClass" type="window.runtime.Object" default=""/>
+          </params>
+          </method>
+          <method name="makeJavascriptSubclass" isStatic="true" resultType="void"><shortDescription>
+     Adds public ServiceMonitor methods to a JavaScript constructor function's prototype.</shortDescription><description/>
+          <params>
+          <param name="constructorFunction" type="window.runtime.Object" default=""/>
+          </params>
+          </method>
+          <method name="propertyIsEnumerable" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+  Indicates whether the specified property exists and is enumerable.</shortDescription><description/>
+          <params>
+          <param name="name" type="window.runtime.String" default=""/>
+          </params>
+          </method>
+          <method name="removeEventListener" isStatic="false" resultType="void"><shortDescription>
+ Removes a listener from the EventDispatcher object.</shortDescription><description/>
+          <params>
+          <param name="type" type="window.runtime.String" default=""/>
+          <param name="listener" type="window.runtime.Function" default=""/>
+          <param name="useCapture" type="window.runtime.Boolean" default="false"/>
+          </params>
+          </method>
+          <method name="setPropertyIsEnumerable" isStatic="false" resultType="void"><shortDescription>
+     Sets the availability of a dynamic property for loop operations.</shortDescription><description/>
+          <params>
+          <param name="name" type="window.runtime.String" default=""/>
+          <param name="isEnum" type="window.runtime.Boolean" default="true"/>
+          </params>
+          </method>
+          <method name="start" isStatic="false" resultType="void"><shortDescription>
+     Starts the service monitor.</shortDescription><description/>
+          </method>
+          <method name="stop" isStatic="false" resultType="void"><shortDescription>
+     Stops monitoring the service.</shortDescription><description/>
+          </method>
+          <method name="toString" isStatic="false" resultType="window.runtime.String"><shortDescription>
+  Returns the string representation of the specified object.</shortDescription><description>
+  Returns the string representation of the specified object.
+       &lt;p platform="actionscript"&gt;&lt;b&gt;Note:&lt;/b&gt; Methods of the Object class are dynamically created on Object's prototype. To redefine this method in a subclass of Object, do not use the &lt;code&gt;override&lt;/code&gt; keyword. For example, a subclass of Object implements &lt;code&gt;function toString():String&lt;/code&gt; instead of using an override of the base class.&lt;/p&gt;
+          </description>
+          </method>
+          <method name="valueOf" isStatic="false" resultType="window.runtime.Object"><shortDescription>
+  Returns the primitive value of the specified object.</shortDescription><description/>
+          </method>
+          <method name="willTrigger" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+ Checks whether an event listener is registered with this EventDispatcher object or any of 
+ its ancestors for the specified event type.</shortDescription><description/>
+          <params>
+          <param name="type" type="window.runtime.String" default=""/>
+          </params>
+          </method>
+          </methods></class>
+          <class name="URLMonitor">
+          <constructors>
+          <constructor name="URLMonitor"><shortDescription>
+     Creates a URLMonitor Object for a specified HTTP- or HTTPS-based service.</shortDescription><description>
+     Creates a URLMonitor Object for a specified HTTP- or HTTPS-based service.
+          &lt;p&gt;After creating a URLMonitor, the caller should call the &lt;code&gt;start()&lt;/code&gt;
+     method to begin monitoring the status of the service.&lt;/p&gt;
+          &lt;p&gt;As with the Timer object, the caller should maintain a reference to the URLMonitor
+     object. Otherwise the runtime could delete the object, thereby ending the monitoring.&lt;/p&gt;
+          &lt;p&gt;A URLRequest parameter specifies the probe request for polling the server.
+     Typically, the request method will be either &lt;code&gt;"GET"&lt;/code&gt; or &lt;code&gt;"HEAD"&lt;/code&gt;.&lt;/p&gt;
+          </description>
+          <params>
+          <param name="urlRequest" type="window.runtime.flash.net.URLRequest" default="">The URLRequest object representing a probe request for polling the server.
+     
+     </param>
+          <param name="acceptableStatusCodes" type="window.runtime.Array" default="null">An array of numeric status codes listing the codes that represent a successful result.
+     
+     &lt;p&gt;If you do not specify a value for the &lt;code&gt;acceptableStatusCodes&lt;/code&gt; property, the following status
+     codes will be recognized as successful responses:&lt;/p&gt;
+     
+     &lt;ul&gt;
+      &lt;li&gt;200 (OK) &lt;/li&gt;
+      &lt;li&gt;202 (Accepted) &lt;/li&gt;
+      &lt;li&gt;204 (No content &lt;/li&gt;
+      &lt;li&gt;205 (Reset content) &lt;/li&gt;
+      &lt;li&gt;206 (Partial content, in response to request with a Range header) &lt;/li&gt;
+     &lt;/ul&gt;
+     
+     </param>
+          </params>
+          </constructor>
+          </constructors>
+          <fields>
+          <field name="pollInterval" type="window.runtime.Number" isConst="false" isStatic="false">
+     The interval, in milliseconds, for polling the server.</field>
+          <field name="running" type="window.runtime.Boolean" isConst="false" isStatic="false">
+     Whether the monitor has been started.</field>
+          <field name="available" type="window.runtime.Boolean" isConst="false" isStatic="false">
+     Whether the service is currently considered "available."
+          &lt;p&gt;The initial value is &lt;code&gt;false&lt;/code&gt; until either a status check sets the
+     property to &lt;code&gt;true&lt;/code&gt; or the property is initialized to &lt;code&gt;true&lt;/code&gt; explicitly.&lt;/p&gt;
+          &lt;p&gt;Typically, this property is set by the &lt;code&gt;checkStatus()&lt;/code&gt; implementation in a subclass or specializer,
+     but if the application has independent information about a service's availability (for example, a request just succeeded
+     or failed), the property can be set explicitly.&lt;/p&gt;
+     
+     </field>
+          <field name="lastStatusUpdate" type="window.runtime.Date" isConst="false" isStatic="false">
+     The time of the last status update.</field>
+          <field name="prototype" type="window.runtime.Object" isConst="false" isStatic="true">
+  A reference to the prototype object of a class or function object.</field>
+          <field name="constructor" type="window.runtime.Object" isConst="false" isStatic="false">
+  A reference to the class object or constructor function for a given object instance.</field>
+          <field name="urlRequest" type="window.runtime.flash.net.URLRequest" isConst="false" isStatic="false">
+     The URLRequest object representing the probe request.
+     
+     </field>
+          <field name="acceptableStatusCodes" type="window.runtime.Array" isConst="false" isStatic="false">
+     The numeric status codes representing a successful result.
+     
+     </field>
+          </fields>
+          
+          <methods>
+          <method name="addEventListener" isStatic="false" resultType="void"><shortDescription>
+ Registers an event listener object with an EventDispatcher object so that the listener 
+ receives notification of an event.</shortDescription><description/>
+          <params>
+          <param name="type" type="window.runtime.String" default=""/>
+          <param name="listener" type="window.runtime.Function" default=""/>
+          <param name="useCapture" type="window.runtime.Boolean" default="false"/>
+          <param name="priority" type="window.runtime.int" default="0"/>
+          <param name="useWeakReference" type="window.runtime.Boolean" default="false"/>
+          </params>
+          </method>
+          <method name="checkStatus" isStatic="false" resultType="void"><shortDescription>
+    Attempts to load content from a URL in the background, to check for a 
+    returned HTTP status code.</shortDescription><description>
+    Attempts to load content from a URL in the background, to check for a 
+    returned HTTP status code. 
+    &lt;p&gt;
+    If it receives a status code that is listed in the &lt;code&gt;acceptableStatusCodes&lt;/code&gt; 
+    property, the &lt;code&gt;available&lt;/code&gt; property will be set to &lt;code&gt;true&lt;/code&gt;. 
+    If it receives a status code that is not in the &lt;code&gt;acceptableStatusCodes&lt;/code&gt; 
+    list, or if there is a security error or I/O error, the &lt;code&gt;available&lt;/code&gt; 
+    property will be set to &lt;code&gt;false&lt;/code&gt;.
+    &lt;/p&gt;
+    
+    </description>
+          </method>
+          <method name="dispatchEvent" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+ Dispatches an event into the event flow.</shortDescription><description/>
+          <params>
+          <param name="event" type="window.runtime.flash.events.Event" default=""/>
+          </params>
+          </method>
+          <method name="hasEventListener" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+ Checks whether the EventDispatcher object has any listeners registered for a specific type 
+ of event.</shortDescription><description/>
+          <params>
+          <param name="type" type="window.runtime.String" default=""/>
+          </params>
+          </method>
+          <method name="hasOwnProperty" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+  Indicates whether an object has a specified property defined.</shortDescription><description/>
+          <params>
+          <param name="name" type="window.runtime.String" default=""/>
+          </params>
+          </method>
+          <method name="isPrototypeOf" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+  Indicates whether an instance of the Object class is in the prototype chain of the object specified 
+  as the parameter.</shortDescription><description/>
+          <params>
+          <param name="theClass" type="window.runtime.Object" default=""/>
+          </params>
+          </method>
+          <method name="makeJavascriptSubclass" isStatic="true" resultType="void"><shortDescription>
+     Adds public ServiceMonitor methods to a JavaScript constructor function's prototype.</shortDescription><description/>
+          <params>
+          <param name="constructorFunction" type="window.runtime.Object" default=""/>
+          </params>
+          </method>
+          <method name="propertyIsEnumerable" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+  Indicates whether the specified property exists and is enumerable.</shortDescription><description/>
+          <params>
+          <param name="name" type="window.runtime.String" default=""/>
+          </params>
+          </method>
+          <method name="removeEventListener" isStatic="false" resultType="void"><shortDescription>
+ Removes a listener from the EventDispatcher object.</shortDescription><description/>
+          <params>
+          <param name="type" type="window.runtime.String" default=""/>
+          <param name="listener" type="window.runtime.Function" default=""/>
+          <param name="useCapture" type="window.runtime.Boolean" default="false"/>
+          </params>
+          </method>
+          <method name="setPropertyIsEnumerable" isStatic="false" resultType="void"><shortDescription>
+     Sets the availability of a dynamic property for loop operations.</shortDescription><description/>
+          <params>
+          <param name="name" type="window.runtime.String" default=""/>
+          <param name="isEnum" type="window.runtime.Boolean" default="true"/>
+          </params>
+          </method>
+          <method name="start" isStatic="false" resultType="void"><shortDescription>
+     Starts the service monitor.</shortDescription><description/>
+          </method>
+          <method name="stop" isStatic="false" resultType="void"><shortDescription>
+     Stops monitoring the service.</shortDescription><description/>
+          </method>
+          <method name="toString" isStatic="false" resultType="window.runtime.String"><shortDescription>
+  Returns the string representation of the specified object.</shortDescription><description>
+  Returns the string representation of the specified object.
+       &lt;p platform="actionscript"&gt;&lt;b&gt;Note:&lt;/b&gt; Methods of the Object class are dynamically created on Object's prototype. To redefine this method in a subclass of Object, do not use the &lt;code&gt;override&lt;/code&gt; keyword. For example, a subclass of Object implements &lt;code&gt;function toString():String&lt;/code&gt; instead of using an override of the base class.&lt;/p&gt;
+          </description>
+          </method>
+          <method name="valueOf" isStatic="false" resultType="window.runtime.Object"><shortDescription>
+  Returns the primitive value of the specified object.</shortDescription><description/>
+          </method>
+          <method name="willTrigger" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+ Checks whether an event listener is registered with this EventDispatcher object or any of 
+ its ancestors for the specified event type.</shortDescription><description/>
+          <params>
+          <param name="type" type="window.runtime.String" default=""/>
+          </params>
+          </method>
+          </methods></class>
+          <class name="ServiceMonitor">
+          <constructors>
+          <constructor name="ServiceMonitor"><shortDescription>
+     Creates a ServiceMonitor object.</shortDescription><description>
+     Creates a ServiceMonitor object. 
+          &lt;p platform="actionscript"&gt;This class is typically subclassed to monitor specific service types.&lt;/p&gt;
+     
+     &lt;p platform="javascript"&gt;The class can be specialized in JavaScript (from HTML application content), as described in
+     the description of the &lt;code&gt;makeJavascriptSubclass()&lt;/code&gt; method.&lt;/p&gt;
+          &lt;p&gt;After creating a ServiceMonitor object (or a subclass object), call the &lt;code&gt;start()&lt;/code&gt; method
+     to begin monitoring the status of the service.&lt;/p&gt;
+          &lt;p&gt;As with the Timer object, the caller should maintain a reference to the ServiceMonitor
+     object. Otherwise, the runtime deletes the object and monitoring ends.&lt;/p&gt;
+     
+     </description>
+          </constructor>
+          </constructors>
+          <fields>
+          <field name="prototype" type="window.runtime.Object" isConst="false" isStatic="true">
+  A reference to the prototype object of a class or function object.</field>
+          <field name="constructor" type="window.runtime.Object" isConst="false" isStatic="false">
+  A reference to the class object or constructor function for a given object instance.</field>
+          <field name="pollInterval" type="window.runtime.Number" isConst="false" isStatic="false">
+     The interval, in milliseconds, for polling the server.
+          &lt;p&gt;If zero, the server is not polled periodically, but only immediately after &lt;code&gt;start()&lt;/code&gt; is called
+     and when the network status changes.&lt;/p&gt;
+     
+     &lt;p&gt;The ServiceMonitor object only dispatches a &lt;code&gt;status&lt;/code&gt; event if service
+     status has changed (not on every poll interval). The object also dispatches a &lt;code&gt;status&lt;/code&gt; 
+     event as a result of network connectivity changes (regardles of the poll interval).&lt;/p&gt;
+     
+     </field>
+          <field name="running" type="window.runtime.Boolean" isConst="false" isStatic="false">
+     Whether the monitor has been started.
+     
+     </field>
+          <field name="available" type="window.runtime.Boolean" isConst="false" isStatic="false">
+     Whether the service is currently considered "available."
+          &lt;p&gt;The initial value is &lt;code&gt;false&lt;/code&gt; until either a status check sets the
+     property to &lt;code&gt;true&lt;/code&gt; or the property is initialized to &lt;code&gt;true&lt;/code&gt; explicitly.&lt;/p&gt;
+          &lt;p&gt;Typically, this property is set by the &lt;code&gt;checkStatus()&lt;/code&gt; implementation in a subclass or specializer,
+     but if the application has independent information about a service's availability (for example, a request just succeeded
+     or failed), the property can be set explicitly.&lt;/p&gt;
+     
+     </field>
+          <field name="lastStatusUpdate" type="window.runtime.Date" isConst="false" isStatic="false">
+     The time of the last status update.
+     
+     </field>
+          </fields>
+          
+          <methods>
+          <method name="addEventListener" isStatic="false" resultType="void"><shortDescription>
+ Registers an event listener object with an EventDispatcher object so that the listener 
+ receives notification of an event.</shortDescription><description/>
+          <params>
+          <param name="type" type="window.runtime.String" default=""/>
+          <param name="listener" type="window.runtime.Function" default=""/>
+          <param name="useCapture" type="window.runtime.Boolean" default="false"/>
+          <param name="priority" type="window.runtime.int" default="0"/>
+          <param name="useWeakReference" type="window.runtime.Boolean" default="false"/>
+          </params>
+          </method>
+          <method name="checkStatus" isStatic="false" resultType="void"><shortDescription>
+     Checks the status of the service.</shortDescription><description>
+     Checks the status of the service.
+          &lt;p&gt;A subclass override method for checking the status of the service.&lt;/p&gt;
+          &lt;p&gt;Typically, this method will initiate a network operation whose completion or failure will result in
+     setting the &lt;code&gt;available&lt;/code&gt; property.&lt;/p&gt;
+          &lt;p&gt;JavaScript code can specialize this method by defining a &lt;code&gt;checkStatus()&lt;/code&gt; method 
+     in the "specializer" object.&lt;/p&gt;
+     
+     </description>
+          </method>
+          <method name="dispatchEvent" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+ Dispatches an event into the event flow.</shortDescription><description/>
+          <params>
+          <param name="event" type="window.runtime.flash.events.Event" default=""/>
+          </params>
+          </method>
+          <method name="hasEventListener" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+ Checks whether the EventDispatcher object has any listeners registered for a specific type 
+ of event.</shortDescription><description/>
+          <params>
+          <param name="type" type="window.runtime.String" default=""/>
+          </params>
+          </method>
+          <method name="hasOwnProperty" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+  Indicates whether an object has a specified property defined.</shortDescription><description/>
+          <params>
+          <param name="name" type="window.runtime.String" default=""/>
+          </params>
+          </method>
+          <method name="isPrototypeOf" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+  Indicates whether an instance of the Object class is in the prototype chain of the object specified 
+  as the parameter.</shortDescription><description/>
+          <params>
+          <param name="theClass" type="window.runtime.Object" default=""/>
+          </params>
+          </method>
+          <method name="makeJavascriptSubclass" isStatic="true" resultType="void"><shortDescription>
+     Adds public ServiceMonitor methods to a JavaScript constructor function's prototype.</shortDescription><description>
+     Adds public ServiceMonitor methods to a JavaScript constructor function's prototype.
+          &lt;p&gt;Adds functions to the JavaScript constructor function's prototype that forward public
+     ServiceMonitor functions to the ServiceMonitor object. This approximates
+     a normal JavaScript subclass of the ActionScript base class.&lt;/p&gt;
+          &lt;p&gt;A JavaScript class specializing a ServiceMonitor would look like this:&lt;/p&gt;
+     
+     &lt;listing&gt;
+     // JavaScript Constructor function
+     function MyHTTPMonitor(url, method)
+     {
+         // "that" variable makes "this" available in closures below
+         var that = this;
+         // Required initialization of the service monitor, returns the actual ServiceMonitor object.
+         this.monitor = this.initServiceMonitor();
+         // Initializes URLStream and event handlers.
+         this._urlStream = new air.URLStream();
+         this._urlRequest = new air.URLRequest(url);
+         if (method)
+         {
+             this._urlRequest.method = method;
+         }
+         else
+         {
+             this._urlRequest.method = "GET";
+         }
+         function onStatus(event) {
+             that.monitor.available = Number(event.status) == 200;
+             that._urlStream.close();
+         }
+         function onError(event)
+         {
+             that.monitor.available = false;
+             that._urlStream.close();
+         }
+         this._urlStream.addEventListener(air.HTTPStatusEvent.HTTP_RESPONSE_STATUS, onStatus);
+         this._urlStream.addEventListener(air.SecurityErrorEvent.SECURITY_ERROR, onError);
+         this._urlStream.addEventListener(air.IOErrorEvent.IO_ERROR, onError);
+     }
+          // Augment JavaScript prototype with public methods from ServiceMonitor
+     air.ServiceMonitor.makeJavascriptSubclass(MyHTTPMonitor);
+          // Implement specializer functions, just as you would when subclassing a JavaScript class
+     MyHTTPMonitor.prototype.checkStatus = function()
+     {
+         air.trace('OVERRIDDEN checkStatus!', this);
+         this._urlStream.load(this._urlRequest);
+     }
+     &lt;/listing&gt;
+          &lt;p&gt;To use the JavaScript class:&lt;/p&gt;
+          &lt;listing&gt;
+     var httpMon = new MyHTTPMonitor('http://www.adobe.com')
+     &lt;/listing&gt;
+     
+     &lt;p&gt;Be sure to load the AIRAliases.js and ServiceMonitor.swf files with &lt;code&gt;script&lt;/code&gt; tags.&lt;/p&gt;
+     
+     </description>
+          <params>
+          <param name="constructorFunction" type="window.runtime.Object" default="">The JavaScript object's &lt;code&gt;prototype&lt;/code&gt; property. For example, if the JavaScript 
+     object that you are using to serve as a specializer object is named MyHTTPMonitor, pass 
+     &lt;code&gt;MyHTTPMonitor.prototype&lt;/code&gt; as the value for this parameter.
+     
+     </param>
+          </params>
+          </method>
+          <method name="propertyIsEnumerable" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+  Indicates whether the specified property exists and is enumerable.</shortDescription><description/>
+          <params>
+          <param name="name" type="window.runtime.String" default=""/>
+          </params>
+          </method>
+          <method name="removeEventListener" isStatic="false" resultType="void"><shortDescription>
+ Removes a listener from the EventDispatcher object.</shortDescription><description/>
+          <params>
+          <param name="type" type="window.runtime.String" default=""/>
+          <param name="listener" type="window.runtime.Function" default=""/>
+          <param name="useCapture" type="window.runtime.Boolean" default="false"/>
+          </params>
+          </method>
+          <method name="setPropertyIsEnumerable" isStatic="false" resultType="void"><shortDescription>
+     Sets the availability of a dynamic property for loop operations.</shortDescription><description/>
+          <params>
+          <param name="name" type="window.runtime.String" default=""/>
+          <param name="isEnum" type="window.runtime.Boolean" default="true"/>
+          </params>
+          </method>
+          <method name="start" isStatic="false" resultType="void"><shortDescription>
+     Starts the service monitor.</shortDescription><description>
+     Starts the service monitor.
+     
+     </description>
+          </method>
+          <method name="stop" isStatic="false" resultType="void"><shortDescription>
+     Stops monitoring the service.</shortDescription><description>
+     Stops monitoring the service.
+     
+     </description>
+          </method>
+          <method name="toString" isStatic="false" resultType="window.runtime.String"><shortDescription>
+  Returns the string representation of the specified object.</shortDescription><description>
+  Returns the string representation of the specified object.
+       &lt;p platform="actionscript"&gt;&lt;b&gt;Note:&lt;/b&gt; Methods of the Object class are dynamically created on Object's prototype. To redefine this method in a subclass of Object, do not use the &lt;code&gt;override&lt;/code&gt; keyword. For example, a subclass of Object implements &lt;code&gt;function toString():String&lt;/code&gt; instead of using an override of the base class.&lt;/p&gt;
+          </description>
+          </method>
+          <method name="valueOf" isStatic="false" resultType="window.runtime.Object"><shortDescription>
+  Returns the primitive value of the specified object.</shortDescription><description/>
+          </method>
+          <method name="willTrigger" isStatic="false" resultType="window.runtime.Boolean"><shortDescription>
+ Checks whether an event listener is registered with this EventDispatcher object or any of 
+ its ancestors for the specified event type.</shortDescription><description/>
+          <params>
+          <param name="type" type="window.runtime.String" default=""/>
+          </params>
+          </method>
+          </methods></class>
+          </asClasses>
+          
+          </asPackage>
+          </packages>
+         </AIRAPIs>
