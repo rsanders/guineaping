@@ -1,86 +1,64 @@
 <html>
-	<head>
+  <head>
         <title>Application Sandbox sample</title>
         <link href="sample.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="lib/air/AIRAliases.js"></script>
         <script type="text/javascript" src="lib/air/AIRIntrospector.js"></script>
         <script type="text/javascript" src="lib/air/AIRLocalizer.js"></script>
         <script type="text/javascript" src="lib/air/AIRMenuBuilder.js"></script>
-        <script type="text/javascript" src="lib/air/AIRSourceViewer.js"></script>	
+        <script type="text/javascript" src="lib/air/AIRSourceViewer.js"></script> 
 
-		<script type="text/javascript" src="lib/dojo/dojo/dojo.js" 
-		    djConfig="parseOnLoad: true"></script>
-
-		<script type="application/x-shockwave-flash" src="lib/air/servicemonitor.swf"></script>
+        <script type="application/x-shockwave-flash" src="lib/air/servicemonitor.swf"></script>
         <script type="application/x-shockwave-flash" src="lib/air/applicationupdater.swf"></script>
         <script type="application/x-shockwave-flash" src="lib/air/applicationupdater_ui.swf"></script> 
 
-        <script type="text/javascript" src="test.js"></script>
+		<!-- clean up some platform differences -->
+        <script type="text/javascript" src="lib/platform/air.js" charset="utf-8"></script>
 
+		<!-- load the cross-platform generic JS library code -->
+        <script type="text/javascript" src="lib/pingboard/jquery.js" charset="utf-8"></script>
+        <script type="text/javascript" src="lib/pingboard/xmlutils.js" charset="utf-8"></script>
+        <script type="text/javascript" src="lib/pingboard/base64.js" charset="utf-8"></script>
+        <script type="text/javascript" src="lib/pingboard/pretty.js" charset="utf-8"></script>
+        <script type="text/javascript" src="lib/pingboard/ajaxqueue.js" charset="utf-8"></script>
+        <script type="text/javascript" src="lib/dojo/dojo/dojo.js" 
+            djConfig="parseOnLoad: true"></script>
+
+		<!-- load cross-platform PingFM library -->
+        <script type="text/javascript" src="lib/pingboard/pingfm.js" charset="utf-8"></script>
+
+		<!-- load cross-platform APP code -->
+        <script type="text/javascript" src="lib/pingboard/common.js" charset="utf-8"></script>
 		
-        <script type="text/javascript">
-            // AIR-related functions created by the developer
-			
-	      dojo.require("dojo.parser");
-	      dojo.require("dijit.form.Button");
-		  dojo.require("dijit.form.Textarea");
+		<!-- load platform-specific APP code -->
+        <script type="text/javascript" src="lib/pingboard/air.js" charset="utf-8"></script>
 
-            
-            // reads the content of a local text file
-            function readLocalFile(){
-                var f = air.File.applicationDirectory.resolvePath("LocalFile.txt");
-				
-                var fs = new air.FileStream();
-                fs.open(f, air.FileMode.READ);
-                var content = fs.readUTFBytes(fs.bytesAvailable);
-                fs.close();
-                
-                return content;
-            }
-            
-            // loads the content of a remote URL
-            function doRequest(url) {
-               var req = new XMLHttpRequest();
-               req.onreadystatechange = function() { 
-                    if (req.readyState == 4) {
-                        var str = req.responseText;
-                        if (str.length > 400) {
-                            str = str.substring(0, 399);
-                            str += "..";
-                        }
-                        alert('readystate: ' + req.readyState + '\n' +
-                            'status/statusText: ' + req.status + '/' + 
-                             req.statusText + '\n' +
-                            'responseText (400 chars): '  + "\n\n" + str);
-                    }
-                };
-                req.open('GET', url, true);
-                req.send(null);                
-            }
-			
-			function openInBrowser(url) {
-				air.navigateToURL( new air.URLRequest(url)); 
-			}
-			
-			function postClick(){
-				var z = 2;
-				alert("Post was clicked");
-			}
-			
-			var k = 2;
-			var m = "starting up";
+        <script type="text/javascript">
+        // AIR-related functions created by the developer
+      
+	  	air.trace("Requiring dojo...");
+	  
+        dojo.require("dojo.parser");
+        dojo.require("dijit.form.Button");
+        dojo.require("dijit.form.Textarea");
             
         </script>
-	</head>
+  </head>
 
     <body>
- 				<div id="messagediv">
-	                <textarea rows="4" cols="50" name="message" id="message" dojoType="dijit.form.Textarea"></textarea>
-				</div>
-				<div id="buttondiv" style="float:right;">
-	                <input type="submit" id="postbutton" name="postbutton" onClick="testFunction();"
-						dojoType="dijit.form.Button"/>
-				</div>
+        <div id="messagediv">
+                  <textarea rows="4" cols="50" name="post_text" id="post_text" dojoType="dijit.form.Textarea"></textarea>
+        </div>
+        <div id="buttondiv" style="float:right;">
+                  <input type="submit" id="postbutton" name="postbutton" onClick="doPost();"
+            dojoType="dijit.form.Button"/>
+        </div>
         
+	<script type="text/javascript">
+		air.trace("Loading...");
+		
+		// start app
+		load();
+	</script>
     </body>
 </html>
