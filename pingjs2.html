@@ -51,7 +51,8 @@
   </head>
 
     <body>
-    	<h1>Pingtrox</h1>
+   	<h1>Pingtrox</h1>
+	<div id="page_main" class="page">
         <div id="messagediv">
                   <textarea rows="4" cols="50" name="post_text" id="post_text" dojoType="dijit.form.Textarea"></textarea>
         </div>
@@ -65,15 +66,40 @@
 		</div>
 		<div id="error" style="clear:both;">
 		</div>
-        
+		</div>
+	</div> <!-- page_main -->
+
+	<div id="page_config" class="page">
+		<h3>Config Page</h3>
+	</div> <!-- page_config -->
+
+	<div id="page_history" class="page">
+		<h3>History Page</h3>
+	</div> <!-- page_history -->
+ 
+ 	<div id="pagebar" class="pagebar">
+ 		<input type="button" value="Main" onclick="showPage('page_main');" />
+ 		<input type="button" value="Config" onclick="showPage('page_config');" />
+ 		<input type="button" value="History" onclick="showPage('page_history');" />
+	</div>
+ 
 	<script type="text/javascript">
+		var pages = ["page_main", "page_config", "page_history"];
+		
+		function showPage(name) {
+			jQuery('.page').hide();
+			jQuery('#' + name).show();
+		}
+		
 		jQuery(function() 
 			{
 				air.trace("Loading...");
 				
 				// start app
 				load();
-
+				
+				showPage('page_main');
+				
 				jQuery('#post_type').change(function(event) { console.log("got a change"); setPostType(event); });
 			});
 	</script>
