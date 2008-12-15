@@ -67,12 +67,13 @@
 		</div>
         
 	<script type="text/javascript">
-		air.trace("Loading...");
-		
-		// start app
-		load();
 		jQuery(function() 
 			{
+				air.trace("Loading...");
+				
+				// start app
+				load();
+
 				jQuery('#post_type').change(function(event) { console.log("got a change"); setPostType(event); });
 			});
 	</script>
