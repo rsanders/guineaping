@@ -43,7 +43,10 @@
         dojo.require("dojo.parser");
         dojo.require("dijit.form.Button");
         dojo.require("dijit.form.Textarea");
-            
+        dojo.require("dijit.form.ComboBox"); 
+        dojo.require("dijit.form.Form"); 
+
+        dojo.require("dojo.data.ItemFileReadStore");
         </script>
   </head>
 
@@ -52,10 +55,16 @@
         <div id="messagediv">
                   <textarea rows="4" cols="50" name="post_text" id="post_text" dojoType="dijit.form.Textarea"></textarea>
         </div>
+		<select id="post_type" name="post_type">
+		</select>
         <div id="buttondiv" style="float:right;">
                   <input type="submit" id="postbutton" name="postbutton" value="Post" onclick="doPost();"
             />
         </div>
+		<div id="svciconbox" style="clear:both;">
+		</div>
+		<div id="error" style="clear:both;">
+		</div>
         
 	<script type="text/javascript">
 		air.trace("Loading...");
