@@ -71,6 +71,10 @@
 		
 		// start app
 		load();
+		jQuery(function() 
+			{
+				jQuery('#post_type').change(function(event) { console.log("got a change"); setPostType(event); });
+			});
 	</script>
     </body>
 </html>
