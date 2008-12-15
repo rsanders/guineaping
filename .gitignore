@@ -1,2 +1,4 @@
 jaxer_bin
+.tmp_*
+.settings
 
