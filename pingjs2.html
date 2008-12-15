@@ -1,7 +1,9 @@
 <html>
   <head>
-        <title>Application Sandbox sample</title>
-        <link href="sample.css" rel="stylesheet" type="text/css"/>
+        <title>Pingtrox</title>
+
+        <link href="ui/air/base.css" rel="stylesheet" type="text/css"/>
+		
         <script type="text/javascript" src="lib/air/AIRAliases.js"></script>
         <script type="text/javascript" src="lib/air/AIRIntrospector.js"></script>
         <script type="text/javascript" src="lib/air/AIRLocalizer.js"></script>
@@ -46,12 +48,13 @@
   </head>
 
     <body>
+    	<h1>Pingtrox</h1>
         <div id="messagediv">
                   <textarea rows="4" cols="50" name="post_text" id="post_text" dojoType="dijit.form.Textarea"></textarea>
         </div>
         <div id="buttondiv" style="float:right;">
-                  <input type="submit" id="postbutton" name="postbutton" onClick="doPost();"
-            dojoType="dijit.form.Button"/>
+                  <input type="submit" id="postbutton" name="postbutton" value="Post" onclick="doPost();"
+            />
         </div>
         
 	<script type="text/javascript">
