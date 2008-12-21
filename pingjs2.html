@@ -45,7 +45,7 @@
         dojo.require("dijit.form.Textarea");
         dojo.require("dijit.form.ComboBox"); 
         dojo.require("dijit.form.Form"); 
-
+        dojo.require("dijit.layout.ContentPane"); 
         dojo.require("dojo.data.ItemFileReadStore");
         </script>
   </head>
@@ -82,33 +82,23 @@
 	</div> <!-- page_config -->
 
 	<div id="page_history" class="page">
-		<h3>History Page</h3>
-		<div id="msglist"></div>
+		<div id="msglist" dojoType="dijit.layout.ContentPane"></div>
 	</div> <!-- page_history -->
  
  	<div id="pagebar" class="pagebar">
- 		<input type="button" value="Main" onclick="showPage('page_main');" />
- 		<input type="button" value="Config" onclick="showPage('page_config');" />
- 		<input type="button" value="History" onclick="showPage('page_history');" />
+ 		<input type="button" value="Main" id="button_page_main" class="button_page" onclick="showPage('page_main');" />
+ 		<input type="button" value="Config" id="button_page_config" class="button_page" onclick="showPage('page_config');" />
+ 		<input type="button" value="History" id="button_page_history" class="button_page" onclick="showPage('page_history');" />
 	</div>
  
 	<script type="text/javascript">
 		var pages = ["page_main", "page_config", "page_history"];
-	
-		function includePage(pagename) {
-//			jQuery.get('./ui/air/page_' + pagename + '.html', null, function (data) {
-//				console.log('includePage: *** got data for page ' + pagename);
-//				jQuery('#page_'+pagename).html(data);
-//			}, 'html');
-			jQuery('#page_'+pagename).load('./ui/air/page_' + pagename + '.html', null, 
-				function() {
-					dojo.parser.parse(document.getElementById('page_'+pagename));
-				});
-		}
 
 		function showPage(name) {
 			jQuery('.current_page').hide().removeClass('current_page').trigger('hidden');
 			jQuery('#' + name).show().addClass('current_page').trigger('shown');
+			jQuery('.button_page').removeClass('selected');
+			jQuery('#button_' + name).addClass('selected');
 		}
 		
 		function updateConfig(event) {
@@ -123,9 +113,6 @@
 				
 				// start app
 				load();
-				
-				// includePage('config');
-				// includePage('history');
 
 				jQuery('.page').hide();
 				showPage('page_main');
