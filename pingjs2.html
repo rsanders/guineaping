@@ -70,6 +70,15 @@
 
 	<div id="page_config" class="page">
 		<h3>Config Page</h3>
+		<label for="app_key">App Key</label>
+		<input type="text" name="app_key" value="" id="app_key" onchange="updateConfig(event);"/>
+
+		<label for="option_shorten">Shorten URLs</label>
+		<input type="checkbox" id="option_shorten" name="option_shorten" onchange="updateConfig(event);" />
+
+		<label for="option_debug">Debug</label>
+		<input type="checkbox" id="option_debug" name="option_debug" onchange="updateConfig(event);" />
+		
 	</div> <!-- page_config -->
 
 	<div id="page_history" class="page">
@@ -98,8 +107,14 @@
 		}
 
 		function showPage(name) {
-			jQuery('.page').hide();
-			jQuery('#' + name).show();
+			jQuery('.current_page').hide().removeClass('current_page').trigger('hidden');
+			jQuery('#' + name).show().addClass('current_page').trigger('shown');
+		}
+		
+		function updateConfig(event) {
+			console.log("updateConfig " + event);	
+			var name = event.target.name;
+			console.log("name = " + name);
 		}
 		
 		jQuery(function() 
@@ -109,12 +124,23 @@
 				// start app
 				load();
 				
-				includePage('config');
+				// includePage('config');
 				includePage('history');
 
+				jQuery('.page').hide();
 				showPage('page_main');
 				
 				jQuery('#post_type').change(function(event) { console.log("got a change"); setPostType(event); });
+				
+				jQuery('#page_config')
+					.bind('hidden', function(event) {
+							console.log("Saving prefs for hidden config page...");
+							configDone(event);
+					})
+					.bind('shown', function() {
+							console.log("Populating prefs for shown config page...");
+							populatePrefs();
+					});
 			});
 	</script>
     </body>
