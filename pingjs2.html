@@ -83,7 +83,7 @@
 
 	<div id="page_history" class="page">
 		<h3>History Page</h3>
-		
+		<div id="msglist"></div>
 	</div> <!-- page_history -->
  
  	<div id="pagebar" class="pagebar">
@@ -125,7 +125,7 @@
 				load();
 				
 				// includePage('config');
-				includePage('history');
+				// includePage('history');
 
 				jQuery('.page').hide();
 				showPage('page_main');
@@ -140,6 +140,11 @@
 					.bind('shown', function() {
 							console.log("Populating prefs for shown config page...");
 							populatePrefs();
+					});
+				jQuery('#page_history')
+					.bind('shown', function() {
+							console.log("Showing latest posts...");
+							showLatestPosts();
 					});
 			});
 	</script>
