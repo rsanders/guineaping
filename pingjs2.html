@@ -1,9 +1,12 @@
 <html>
   <head>
         <title>Pingtrox</title>
-
+	<!-- http://o.aolcdn.com/dojo/1.2/dojo/dojo.xd.js -->
         <link href="ui/air/base.css" rel="stylesheet" type="text/css"/>
-		
+        <link href="lib/dojo/dijit/themes/dijit.css" rel="stylesheet" type="text/css" />
+        <link href="lib/dojo/dijit/themes/tundra/tundra.css" rel="stylesheet" type="text/css" />
+        <link href="lib/dojo/dojo/resources/dojo.css" rel="stylesheet" type="text/css" />
+	
         <script type="text/javascript" src="lib/air/AIRAliases.js"></script>
         <script type="text/javascript" src="lib/air/AIRIntrospector.js"></script>
         <script type="text/javascript" src="lib/air/AIRLocalizer.js"></script>
@@ -23,6 +26,7 @@
         <script type="text/javascript" src="lib/pingboard/base64.js" charset="utf-8"></script>
         <script type="text/javascript" src="lib/pingboard/pretty.js" charset="utf-8"></script>
         <script type="text/javascript" src="lib/pingboard/ajaxqueue.js" charset="utf-8"></script>
+
         <script type="text/javascript" src="lib/dojo/dojo/dojo.js" 
             djConfig="parseOnLoad: true"></script>
 
@@ -47,12 +51,15 @@
         dojo.require("dijit.form.Form"); 
         dojo.require("dijit.layout.ContentPane"); 
         dojo.require("dojo.data.ItemFileReadStore");
+        dojo.require("dijit.layout.TabContainer"); 
+
         </script>
   </head>
 		
     <body>
    	<h1>Pingtrox</h1>
-	<div id="page_main" class="page">
+  <div id="tabcontainer" dojoType="dijit.layout.TabContainer" tabPosition="bottom" style="width:300px;height:400px">
+	<div id="page_main" class="page" dojoType="dijit.layout.ContentPane" title="Main">
         <div id="messagediv">
                   <textarea rows="4" cols="50" name="post_text" id="post_text" dojoType="dijit.form.Textarea"></textarea>
         </div>
@@ -68,7 +75,7 @@
 		</div>
 	</div> <!-- page_main -->
 
-	<div id="page_config" class="page">
+	<div id="page_config" class="page" dojoType="dijit.layout.ContentPane" title="Config">
 		<h3>Config Page</h3>
 		<label for="app_key">App Key</label>
 		<input type="text" name="app_key" value="" id="app_key" onchange="updateConfig(event);"/>
@@ -81,11 +88,12 @@
 		
 	</div> <!-- page_config -->
 
-	<div id="page_history" class="page">
+	<div id="page_history" class="page" dojoType="dijit.layout.ContentPane"  title="History">
 		<div id="msglist" dojoType="dijit.layout.ContentPane"></div>
 	</div> <!-- page_history -->
- 
- 	<div id="pagebar" class="pagebar">
+  </div> <!-- tabcontainer -->
+	
+ 	<div id="pagebar" class="pagebar" style="display:none;">
  		<input type="button" value="Main" id="button_page_main" class="button_page" onclick="showPage('page_main');" />
  		<input type="button" value="Config" id="button_page_config" class="button_page" onclick="showPage('page_config');" />
  		<input type="button" value="History" id="button_page_history" class="button_page" onclick="showPage('page_history');" />
@@ -114,8 +122,8 @@
 				// start app
 				load();
 
-				jQuery('.page').hide();
-				showPage('page_main');
+				//jQuery('.page').hide();
+				//showPage('page_main');
 				
 				jQuery('#post_type').change(function(event) { console.log("got a change"); setPostType(event); });
 				
@@ -134,6 +142,18 @@
 							showLatestPosts();
 					});
 			});
+
+		function handleSelectTab(newWidget, oldWidget) {
+			var newId = newWidget.id;
+			var currentId = oldWidget.id;
+			console.log("** SWITCH: pane id is " + newId + ", old id is " + currentId);
+			jQuery('#' + currentId).trigger('hidden');			
+			jQuery('#' + newId).trigger('shown');
+		}
+
+		dojo.addOnLoad(function() {
+			dojo.connect(dijit.byId("tabcontainer"), "_transition", handleSelectTab);
+		});
 	</script>
     </body>
 </html>
