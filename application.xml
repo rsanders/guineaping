@@ -14,10 +14,10 @@
 -->
 
 	<!-- The application identifier string, unique to this application. Required. -->
-	<id>org.esquimaux.pingjs2</id>
+	<id>org.esquimaux.guineaping</id>
 
 	<!-- Used as the filename for the application. Required. -->
-	<filename>pingjs2</filename>
+	<filename>GuineaPing</filename>
 
 	<!-- The name that is displayed in the AIR application installer. Optional. -->
 	<name>pingjs2</name>
@@ -26,7 +26,7 @@
 	<version>0.1</version>
 
 	<!-- Description, displayed in the AIR application installer. Optional. -->
-	<description>test</description>
+	<description>Ping.FM Posting Client, in HTML/JS</description>
 
 	<!-- Copyright information. Optional -->
 	<copyright>Robert Sanders</copyright>
@@ -34,10 +34,10 @@
 	<!-- Settings for the application's initial window. Required. -->
 	<initialWindow>
 		<!-- The main HTML file of the application. Required. -->
-		<content>pingjs2.html</content>
+		<content>guineaping.html</content>
 		
 		<!-- The title of the main window. Optional. -->
-		<title>PingJS</title>
+		<title>Guinea Ping</title>
 
 		<!-- The type of system chrome to use (either "standard" or "none"). Optional. Default standard. -->
 		<systemChrome>standard</systemChrome>
@@ -52,7 +52,7 @@
 		<minimizable>true</minimizable>
 
 		<!-- Whether the user can maximize the window. Optional. Default true. -->
-		<maximizable>true</maximizable>
+		<maximizable>false</maximizable>
 
 		<!-- Whether the user can resize the window. Optional. Default true. -->
 		<resizable>true</resizable>
