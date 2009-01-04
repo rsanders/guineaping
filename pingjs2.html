@@ -1,12 +1,11 @@
 <html>
   <head>
-        <title>Pingtrox</title>
-	<!-- http://o.aolcdn.com/dojo/1.2/dojo/dojo.xd.js -->
-        <link href="ui/air/base.css" rel="stylesheet" type="text/css"/>
-        <link href="lib/dojo/dijit/themes/dijit.css" rel="stylesheet" type="text/css" />
-        <link href="lib/dojo/dijit/themes/tundra/tundra.css" rel="stylesheet" type="text/css" />
-        <link href="lib/dojo/dojo/resources/dojo.css" rel="stylesheet" type="text/css" />
-	
+		<style type="text/css">
+			@import "lib/dojo/dijit/themes/dijit.css";
+			@import "lib/dojo/dijit/themes/tundra/tundra.css";
+			@import "lib/dojo/dojo/resources/dojo.css";
+			@import "ui/air/base.css";
+		</style>
         <script type="text/javascript" src="lib/air/AIRAliases.js"></script>
         <script type="text/javascript" src="lib/air/AIRIntrospector.js"></script>
         <script type="text/javascript" src="lib/air/AIRLocalizer.js"></script>
@@ -30,15 +29,6 @@
         <script type="text/javascript" src="lib/dojo/dojo/dojo.js" 
             djConfig="parseOnLoad: true"></script>
 
-		<!-- load cross-platform PingFM library -->
-        <script type="text/javascript" src="lib/pingboard/pingfm.js" charset="utf-8"></script>
-
-		<!-- load cross-platform APP code -->
-        <script type="text/javascript" src="lib/pingboard/common.js" charset="utf-8"></script>
-		
-		<!-- load platform-specific APP code -->
-        <script type="text/javascript" src="lib/pingboard/air.js" charset="utf-8"></script>
-
         <script type="text/javascript">
         // AIR-related functions created by the developer
       
@@ -54,19 +44,33 @@
         dojo.require("dijit.layout.TabContainer"); 
 
         </script>
+
+		<!-- load cross-platform PingFM library -->
+        <script type="text/javascript" src="lib/pingboard/pingfm.js" charset="utf-8"></script>
+
+		<!-- load cross-platform APP code -->
+        <script type="text/javascript" src="lib/pingboard/common.js" charset="utf-8"></script>
+		
+		<!-- load platform-specific APP code -->
+        <script type="text/javascript" src="lib/pingboard/air.js" charset="utf-8"></script>
+
   </head>
 		
-    <body>
-   	<h1>Pingtrox</h1>
+  <body class="tundra">
+
   <div id="tabcontainer" dojoType="dijit.layout.TabContainer" tabPosition="bottom" style="width:300px;height:400px">
 	<div id="page_main" class="page" dojoType="dijit.layout.ContentPane" title="Main">
         <div id="messagediv">
                   <textarea rows="4" cols="50" name="post_text" id="post_text" dojoType="dijit.form.Textarea"></textarea>
         </div>
-		<select id="post_type" name="post_type">
+		<select id="post_type" name="post_type" dojoType="dijit.form.ComboBox" 
+					searchAttr="name">
 		</select>
         <div id="buttondiv" style="float:right;">
-                  <input type="submit" id="postbutton" name="postbutton" value="Post" onclick="doPost();"
+                  <input type="submit" id="postbutton" name="postbutton" 
+				  		dojoType="dijit.form.Button"
+						label="Post"
+				  		value="Post" onClick="doPost();"
             />
         </div>
 		<div id="svciconbox" style="clear:both;">
@@ -115,7 +119,7 @@
 			console.log("name = " + name);
 		}
 		
-		jQuery(function() 
+		dojo.addOnLoad(function() 
 			{
 				air.trace("Loading...");
 				
@@ -125,8 +129,12 @@
 				//jQuery('.page').hide();
 				//showPage('page_main');
 				
-				jQuery('#post_type').change(function(event) { console.log("got a change"); setPostType(event); });
-				
+				// jQuery('#post_type').change(function(event) { console.log("got a change"); setPostType(event); });
+				dijit.byId('post_type').onChange = function(event) { 
+							console.log("got a change " + event); 
+							setPostType(event);
+						};
+								
 				jQuery('#page_config')
 					.bind('hidden', function(event) {
 							console.log("Saving prefs for hidden config page...");
